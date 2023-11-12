@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker';
-import { CreateNoteDto, NoteIdDto, UpdateNoteDto } from './dto';
+import { NotesEntity } from '../../entities/notes.entity';
 import { QueryError } from '../../lib/query-error';
 import { getRepository } from '../../orm.config';
+import { CreateNoteDto, NoteIdDto, UpdateNoteDto } from './dto';
 import { NotesService } from './notes.service';
-import { NotesEntity } from '../../entities/notes.entity';
 
 jest.mock('../../orm.config');
 

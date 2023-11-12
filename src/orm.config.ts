@@ -1,9 +1,7 @@
 import * as dotenv from 'dotenv';
 import 'reflect-metadata';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, EntityTarget, ObjectLiteral, Repository } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { ObjectLiteral } from 'typeorm/common/ObjectLiteral';
-import { EntityTarget } from 'typeorm/common/EntityTarget';
 
 dotenv.config();
 

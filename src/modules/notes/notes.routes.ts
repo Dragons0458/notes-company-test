@@ -1,12 +1,12 @@
-import router from '../../lib/router';
 import { validateAndTransform } from '../../lib/input-validator-middleware';
-import { NotesController } from './notes.controller';
+import router from '../../lib/router';
 import {
   CreateNoteDto,
   DeleteNoteByIdDto,
   GetNoteByIdDto,
   UpdateNoteDto,
 } from './dto';
+import { NotesController } from './notes.controller';
 
 router.get('/', async (req, res) => {
   const notesController = await NotesController.getInstance();

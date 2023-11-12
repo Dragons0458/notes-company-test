@@ -1,17 +1,17 @@
 import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import {
   IsDate,
   IsNotEmpty,
   IsString,
   IsUUID,
   MaxLength,
 } from 'class-validator';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 const titleMaxLength = 100;
 

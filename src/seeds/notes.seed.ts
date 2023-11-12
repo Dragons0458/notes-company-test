@@ -1,6 +1,6 @@
 import { NotesEntity } from '../entities/notes.entity';
-import { getRepository } from '../orm.config';
 import { generateNotes } from '../lib/generators/notes-generators';
+import { getRepository } from '../orm.config';
 
 /**
  * Seed notes

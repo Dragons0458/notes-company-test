@@ -1,5 +1,5 @@
-import { NotesEntity } from '../../entities/notes.entity';
 import { faker } from '@faker-js/faker';
+import { NotesEntity } from '../../entities/notes.entity';
 
 /**
  * Generate a note with random data
