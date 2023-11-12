@@ -4,9 +4,10 @@
   "description": "",
   "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec serverless offline start",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "test": "jest --coverage",
+    "start": "nodemon --exec serverless offline start --host 0.0.0.0",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "seeds": "ts-node ./src/seeds/index.ts"
   },
   "keywords": [],
   "author": "",
