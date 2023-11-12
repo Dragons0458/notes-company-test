@@ -12,13 +12,13 @@ export class NotesService {
    * The notes service instance.
    * @private
    */
-  private static notesServiceInstance: NotesService | undefined;
+  private static notesServiceInstance: NotesService;
 
   /**
    * The notes repository instance.
    * @private
    */
-  private notesRepository: Repository<NotesEntity> | undefined;
+  private notesRepository!: Repository<NotesEntity>;
 
   private constructor() {}
 
@@ -37,7 +37,7 @@ export class NotesService {
    * @returns {Promise<NotesEntity[]>} The notes.
    */
   async all(): Promise<NotesEntity[]> {
-    return this.notesRepository!.find();
+    return this.notesRepository.find();
   }
 
   /**
@@ -46,7 +46,7 @@ export class NotesService {
    * @returns {Promise<NotesEntity>} The note.
    */
   async getById(id: string): Promise<NotesEntity> {
-    const note = await this.notesRepository!.findOneBy({ id });
+    const note = await this.notesRepository.findOneBy({ id });
 
     if (!note) throw new QueryError(404, 'Not found');
 
@@ -61,7 +61,7 @@ export class NotesService {
   async create(createNote: CreateNoteDto): Promise<NoteIdDto> {
     const {
       identifiers: [note],
-    } = await this.notesRepository!.insert(createNote);
+    } = await this.notesRepository.insert(createNote);
 
     return { id: note?.id };
   }
@@ -74,7 +74,7 @@ export class NotesService {
    * @returns {Promise<void>}
    */
   async update(id: number, updateNote: UpdateNoteDto): Promise<void> {
-    const { affected } = await this.notesRepository!.update(id, updateNote);
+    const { affected } = await this.notesRepository.update(id, updateNote);
 
     if (!affected) throw new QueryError(404, 'Not found');
   }
@@ -86,7 +86,7 @@ export class NotesService {
    * @returns {Promise<void>}
    */
   async delete(id: number): Promise<void> {
-    const { affected } = await this.notesRepository!.delete(id);
+    const { affected } = await this.notesRepository.delete(id);
 
     if (!affected) throw new QueryError(404, 'Not found');
   }
