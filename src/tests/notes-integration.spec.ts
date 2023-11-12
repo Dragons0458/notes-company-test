@@ -1,9 +1,11 @@
+import { faker } from '@faker-js/faker';
 import supertest from 'supertest';
-import '../modules/notes/handler';
 import app from '../app';
 import { NotesEntity } from '../entities/notes.entity';
+import '../modules/notes/handler';
 import notesSeeder from '../seeds/notes.seed';
-import { faker } from '@faker-js/faker';
+
+const baseRoute = '/notes';
 
 describe('Notes integration tests', () => {
   let generatedNotes: NotesEntity[];
@@ -15,7 +17,7 @@ describe('Notes integration tests', () => {
   it('should return 200 when get all notes and an array type', async () => {
     expect.assertions(2);
 
-    const { body, status } = await supertest(app).get('/notes');
+    const { body, status } = await supertest(app).get(baseRoute);
 
     expect(status).toStrictEqual(200);
     expect(body).toBeInstanceOf(Array);
@@ -30,7 +32,7 @@ describe('Notes integration tests', () => {
         max: generatedNotes.length - 1,
       });
       const { body, status } = await supertest(app).get(
-        `/notes/${generatedNotes[randomNoteNumber].id}`,
+        `${baseRoute}/${generatedNotes[randomNoteNumber].id}`,
       );
 
       expect(status).toStrictEqual(200);
@@ -39,7 +41,7 @@ describe('Notes integration tests', () => {
 
     it('should return 404 when note not found', async () => {
       const { status } = await supertest(app).get(
-        `/notes/${faker.string.uuid()}`,
+        `${baseRoute}/${faker.string.uuid()}`,
       );
 
       expect(status).toStrictEqual(404);
@@ -49,7 +51,7 @@ describe('Notes integration tests', () => {
   describe('Create note', () => {
     it('should return 201 when create a note', async () => {
       const { status } = await supertest(app)
-        .post('/notes')
+        .post(baseRoute)
         .send({
           title: faker.lorem.words(3),
           content: faker.lorem.paragraph(),
@@ -62,7 +64,7 @@ describe('Notes integration tests', () => {
       expect.assertions(1);
 
       const { status } = await supertest(app)
-        .post('/notes')
+        .post(baseRoute)
         .send({
           title: faker.lorem.words(3),
         });
@@ -78,7 +80,7 @@ describe('Notes integration tests', () => {
         max: generatedNotes.length - 1,
       });
       const { status } = await supertest(app)
-        .put(`/notes/${generatedNotes[randomNoteNumber].id}`)
+        .put(`${baseRoute}/${generatedNotes[randomNoteNumber].id}`)
         .send({
           title: faker.lorem.words(3),
           content: faker.lorem.paragraph(),
@@ -93,7 +95,7 @@ describe('Notes integration tests', () => {
         max: generatedNotes.length - 1,
       });
       const { status } = await supertest(app)
-        .put(`/notes/${generatedNotes[randomNoteNumber].id}`)
+        .put(`${baseRoute}/${generatedNotes[randomNoteNumber].id}`)
         .send({
           title: faker.lorem.words(102),
         });
@@ -103,7 +105,7 @@ describe('Notes integration tests', () => {
 
     it('should return 404 when note not found', async () => {
       const { status } = await supertest(app)
-        .put(`/notes/${faker.string.uuid()}`)
+        .put(`${baseRoute}/${faker.string.uuid()}`)
         .send({
           title: faker.lorem.words(3),
           content: faker.lorem.paragraph(),
@@ -120,7 +122,7 @@ describe('Notes integration tests', () => {
         max: generatedNotes.length - 1,
       });
       const { status } = await supertest(app).delete(
-        `/notes/${generatedNotes[randomNoteNumber].id}`,
+        `${baseRoute}/${generatedNotes[randomNoteNumber].id}`,
       );
 
       expect(status).toStrictEqual(204);
@@ -128,7 +130,7 @@ describe('Notes integration tests', () => {
 
     it('should return 404 when note not found', async () => {
       const { status } = await supertest(app).delete(
-        `/notes/${faker.string.uuid()}`,
+        `${baseRoute}/${faker.string.uuid()}`,
       );
 
       expect(status).toStrictEqual(404);
