@@ -1,6 +1,5 @@
 .idea
 .git
-dist
 .build
 documentation
 node_modules
