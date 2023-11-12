@@ -1,3 +1,7 @@
+<p style="text-align: center;">
+  <img src="./banner.jpeg" width="320" alt="Nest Logo" />
+</p>
+
 # Notes Serverless Backend
 
 This project is a Serverless Express API built using TypeORM, AWS Lambda and the Serverless Framework. It's designed to interact with a PostgreSQL database.
