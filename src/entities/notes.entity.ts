@@ -5,7 +5,15 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IsDate, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import {
+  IsDate,
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+  MaxLength,
+} from 'class-validator';
+
+const titleMaxLength = 100;
 
 /**
  * Represents a note.
@@ -22,9 +30,10 @@ export class NotesEntity {
   /**
    * The note's title.
    */
-  @Column({ type: 'varchar', length: 100 })
+  @Column({ type: 'varchar', length: titleMaxLength })
   @IsString()
   @IsNotEmpty()
+  @MaxLength(titleMaxLength)
   title!: string;
 
   /**
