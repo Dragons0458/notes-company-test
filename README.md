@@ -1,4 +1,4 @@
-<p style="text-align: center;">
+<p align="center">
   <img src="./banner.jpeg" width="320" alt="Nest Logo" />
 </p>
 
