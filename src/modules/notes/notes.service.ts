@@ -68,12 +68,12 @@ export class NotesService {
 
   /**
    * Updates a note.
-   * @param id {number} The note id.
+   * @param id {string} The note id.
    * @param updateNote {UpdateNoteDto} The note data.
    * @throws {QueryError} If the note is not found.
    * @returns {Promise<void>}
    */
-  async update(id: number, updateNote: UpdateNoteDto): Promise<void> {
+  async update(id: string, updateNote: UpdateNoteDto): Promise<void> {
     const { affected } = await this.notesRepository.update(id, updateNote);
 
     if (!affected) throw new QueryError(404, 'Not found');
@@ -81,11 +81,11 @@ export class NotesService {
 
   /**
    * Deletes a note.
-   * @param id {number} The note id.
+   * @param id {string} The note id.
    * @throws {QueryError} If the note is not found.
    * @returns {Promise<void>}
    */
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     const { affected } = await this.notesRepository.delete(id);
 
     if (!affected) throw new QueryError(404, 'Not found');

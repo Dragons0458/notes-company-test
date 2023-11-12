@@ -35,10 +35,10 @@ export class NotesController {
 
   /**
    * The all method is responsible for handling the GET /notes request.
-   * @param req {Request} The request object.
+   * @param _ {Request} The request object.
    * @param res {Response} The response object.
    */
-  async all(req: Request, res: Response) {
+  async all(_: Request, res: Response) {
     const notes = await this.noteService.all();
 
     res.status(200).json(notes);
@@ -79,7 +79,7 @@ export class NotesController {
    */
   async update(req: Request, res: Response) {
     try {
-      await this.noteService.update(+req.params.id, req.body);
+      await this.noteService.update(req.params.id, req.body);
 
       res.status(204).send();
     } catch (e) {
@@ -96,7 +96,7 @@ export class NotesController {
    */
   async delete(req: Request, res: Response) {
     try {
-      await this.noteService.delete(+req.params.id);
+      await this.noteService.delete(req.params.id);
 
       res.status(204).send();
     } catch (e) {

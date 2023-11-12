@@ -79,7 +79,7 @@ describe('NoteService', () => {
       mockRepository.update.mockResolvedValueOnce({ affected: 1 });
 
       expect(
-        noteService.update(faker.number.int(), {} as UpdateNoteDto),
+        noteService.update(faker.string.uuid(), {} as UpdateNoteDto),
       ).resolves.not.toThrow();
     });
 
@@ -87,7 +87,7 @@ describe('NoteService', () => {
       mockRepository.update.mockResolvedValueOnce({ affected: 0 });
 
       expect(
-        noteService.update(faker.number.int(), {} as UpdateNoteDto),
+        noteService.update(faker.string.uuid(), {} as UpdateNoteDto),
       ).rejects.toThrow(error);
     });
   });
@@ -96,13 +96,13 @@ describe('NoteService', () => {
     it("shouldn't return an error when the id is found", () => {
       mockRepository.delete.mockResolvedValueOnce({ affected: 1 });
 
-      expect(noteService.delete(faker.number.int())).resolves.not.toThrow();
+      expect(noteService.delete(faker.string.uuid())).resolves.not.toThrow();
     });
 
     it('should throw an error with status 404 when the id is not found', () => {
       mockRepository.delete.mockResolvedValueOnce({ affected: 0 });
 
-      expect(noteService.delete(faker.number.int())).rejects.toThrow(error);
+      expect(noteService.delete(faker.string.uuid())).rejects.toThrow(error);
     });
   });
 });
