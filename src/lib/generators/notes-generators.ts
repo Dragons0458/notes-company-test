@@ -1,6 +1,11 @@
 import { NotesEntity } from '../../entities/notes.entity';
 import { faker } from '@faker-js/faker';
 
+/**
+ * Generate a note with random data
+ * @param fixedUUID {string} Optional fixed UUID
+ * @returns {NotesEntity} A note entity
+ */
 export function generateNote(fixedUUID?: string): NotesEntity {
   const note = new NotesEntity();
 
@@ -13,6 +18,12 @@ export function generateNote(fixedUUID?: string): NotesEntity {
   return note;
 }
 
+/**
+ * Generate a list of notes with random data
+ * @param size {number} Number of notes to generate
+ * @param fixedUUID {string} Optional fixed UUID
+ * @returns {NotesEntity[]} A list of notes
+ */
 export function generateNotes(size: number, fixedUUID?: string): NotesEntity[] {
   const notes = Array.from({ length: size }, generateNote);
 
