@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { NotesEntity } from '../../entities/notes.entity';
+import { generateNote } from '../../lib/generators/notes-generators';
 import { QueryError } from '../../lib/query-error';
 import { NotesController } from './notes.controller';
 
@@ -18,17 +18,6 @@ jest.mock('./notes.service', () => {
     },
   };
 });
-
-function generateNote(): NotesEntity {
-  const note = new NotesEntity();
-  note.id = faker.string.uuid();
-  note.title = faker.lorem.words(3);
-  note.content = faker.lorem.paragraph();
-  note.createdAt = faker.date.past();
-  note.updatedAt = faker.date.past();
-
-  return note;
-}
 
 const error = new QueryError(404, 'Not found');
 const responseMock = {
